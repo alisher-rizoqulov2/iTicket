@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 import { CreateDistrictDto } from "./dto/create-district.dto";
 import { UpdateDistrictDto } from "./dto/update-district.dto";
 import { District } from "./schemas/district.schema";
@@ -15,10 +19,10 @@ export class DistrictService {
 
   async create(createDistrictDto: CreateDistrictDto) {
     const { region_id } = createDistrictDto;
-    if(!mongoose.isValidObjectId(region_id)) {
+    if (!mongoose.isValidObjectId(region_id)) {
       throw new BadRequestException("Region ID notog'ri");
     }
-    
+
     const region = await this.RegionModel.findById(region_id);
     if (!region) {
       throw new BadRequestException("Bunday Region yo'q");
@@ -34,9 +38,9 @@ export class DistrictService {
   }
 
   findOne(id: string) {
-      if (!Types.ObjectId.isValid(id))
-          throw new NotFoundException("Invalid ID format");
-    return this.districtModel.findById(id);
+    if (!Types.ObjectId.isValid(id))
+      throw new NotFoundException("Invalid ID format");
+    return this.districtModel.findById(id).populate("region_id");
   }
 
   update(id: string, updateDistrictDto: UpdateDistrictDto) {
