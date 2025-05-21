@@ -12,13 +12,13 @@ export class Ticket {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Event",
   })
-  event_id: Event
+  event_id: Event;
 
   @Prop({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Seat",
   })
-  seat_id: Seat
+  seat_id: Seat;
 
   @Prop()
   price: number;

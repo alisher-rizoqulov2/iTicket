@@ -4,6 +4,8 @@ import { UpdateLangDto } from "./dto/update-lang.dto";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { Lang } from "./schema/lang.schema";
+import { EventService } from "../event/event.service";
+import { TicketService } from "../ticket/ticket.service";
 
 @Injectable()
 export class LangService {
